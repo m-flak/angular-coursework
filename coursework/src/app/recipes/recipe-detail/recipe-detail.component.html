@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h1>Recipe Name</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="btn-group dropdown"
+        [class.open]="dropdownOpen"
+        (window:click)="handleOutsideDropdownClick($event)"
+        [attr.data-dropdown-id]="dropdownId">
+            <button
+                type="button"
+                class="btn btn-primary dropdown-toggle"
+                (click)="dropdownOpen = !dropdownOpen"
+                [attr.data-dropdown-id]="dropdownId">
+                    Manage Recipe
+                    <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu"
+                [attr.data-dropdown-id]="dropdownId">
+                    <li>
+                        <a class="dropdown-item" href="#" [attr.data-dropdown-id]="dropdownId">To Shopping List</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#" [attr.data-dropdown-id]="dropdownId">Edit Recipe</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#" [attr.data-dropdown-id]="dropdownId">Delete Recipe</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        Description
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        Ingredients
+    </div>
+</div>
