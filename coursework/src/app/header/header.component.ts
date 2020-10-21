@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
     selector: 'app-header',
@@ -8,6 +8,8 @@ export class HeaderComponent {
     collapsed: boolean = true;
     dropdownOpen: boolean = false;
     dropdownId: string = 'header-dropdown';
+
+    @Output() locationChange: EventEmitter<string> = new EventEmitter<string>();
 
     handleOutsideDropdownClick(e: any) {
         // There may be other dropdowns...
@@ -26,5 +28,9 @@ export class HeaderComponent {
             // Will close the dropdown when clicking a different dropdown
             this.dropdownOpen = false;
         }
+    }
+
+    handleNavClick(navLocation: string) {
+        this.locationChange.emit(navLocation);
     }
 }

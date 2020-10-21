@@ -1,9 +1,13 @@
-<app-header></app-header>
+<app-header (locationChange)="handleLocationChange($event)"></app-header>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <app-recipes></app-recipes>
-            <app-shopping-list></app-shopping-list>
+            <ng-template [ngIf]="currentLocation === 'recipes'">
+                <app-recipes></app-recipes>
+            </ng-template>
+            <ng-template [ngIf]="currentLocation === 'shopping-list'">
+                <app-shopping-list></app-shopping-list>
+            </ng-template>
         </div>
     </div>
 </div>

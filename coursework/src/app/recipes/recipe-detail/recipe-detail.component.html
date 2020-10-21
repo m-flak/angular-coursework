@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-xs-12">
-        <h1>Recipe Name</h1>
+        <h1>{{ recipe.name }}</h1>
     </div>
 </div>
 <div class="row">
@@ -33,12 +33,16 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-12">
-        Description
+    <div class="col-xs-7 pull-right">
+        <img
+            [src]="recipe.imageUrl"
+            [alt]="recipe.name"
+            class="img-responsive" />
     </div>
 </div>
+<hr />
 <div class="row">
     <div class="col-xs-12">
-        Ingredients
+        {{ recipe.description }}
     </div>
 </div>
