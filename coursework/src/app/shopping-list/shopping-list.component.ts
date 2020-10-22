@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ShoppingListService } from './shopping-list.service';
 import { Ingredient } from '../shared/ingredient.model';
 
 @Component({
@@ -8,46 +9,16 @@ import { Ingredient } from '../shared/ingredient.model';
     styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
-    // TODO: Remove mock data
-    shoppingList: Array<Ingredient> = [
-        {
-            name: 'Apples',
-            amount: 5
-        },
-        {
-            name: 'Oranges',
-            amount: 5
-        }
-    ];
+    shoppingList: Array<Ingredient> = [];
 
-    constructor() { }
+    constructor(private shoppingListService: ShoppingListService) { }
 
     ngOnInit(): void {
-    }
+        this.shoppingList = this.shoppingListService.getShoppingList();
 
-    handleIngredientAdded(ingredient: Ingredient) {
-        for (const item of this.shoppingList) {
-            if (item.name.toLowerCase() === ingredient.name.toLowerCase()) {
-                item.amount += ingredient.amount;
-                return;
-            }
-        }
-
-        this.shoppingList.push(ingredient);
-    }
-
-    handleIngredientRemoved(ingredient: Ingredient) {
-        for (const item of this.shoppingList) {
-            if (item.name.toLowerCase() === ingredient.name.toLowerCase()) {
-                if (ingredient.amount >= item.amount) {
-                    break;
-                }
-
-                item.amount -= ingredient.amount;
-                return;
-            }
-        }
-        
-        this.shoppingList = this.shoppingList.filter(i => i.name.toLowerCase() !== ingredient.name.toLowerCase());
+        this.shoppingListService.ingredientsChanged
+            .subscribe((newShoppingList: Array<Ingredient>) => {
+                this.shoppingList = newShoppingList;
+            });
     }
 }
