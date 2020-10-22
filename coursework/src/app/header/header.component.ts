@@ -1,30 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+
+import { DropdownHandler } from '../shared/dropdown-handler.class';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html'
 })
-export class HeaderComponent {
+export class HeaderComponent extends DropdownHandler {
     collapsed: boolean = true;
-    dropdownOpen: boolean = false;
-    dropdownId: string = 'header-dropdown';
+
+    @Output() locationChange: EventEmitter<string> = new EventEmitter<string>();
+
+    constructor() {
+        super('header-dropdown');
+    }
 
     handleOutsideDropdownClick(e: any) {
-        // There may be other dropdowns...
-        const isCorrectDropdown = () => {
-            if ('dropdownId' in e.target.dataset) {
-                return (this.dropdownId === e.target.dataset.dropdownId);
-            }
-            return false;
-        };
+        return this._handleOutsideDropdownClick(e);
+    }
 
-        // Will close the dropdown if clicked outside of it when open
-        if (this.dropdownOpen && !e.target.className.includes('dropdown')) {
-            this.dropdownOpen = false;
-        }
-        else if (this.dropdownOpen && e.target.className.includes('dropdown') && !isCorrectDropdown()) {
-            // Will close the dropdown when clicking a different dropdown
-            this.dropdownOpen = false;
-        }
+    handleNavClick(navLocation: string) {
+        this.locationChange.emit(navLocation);
     }
 }
