@@ -2,3 +2,8 @@ div.row {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
+
+.ingredient-quantity {
+    font-weight: bolder;
+    padding-right: 4px;
+}
