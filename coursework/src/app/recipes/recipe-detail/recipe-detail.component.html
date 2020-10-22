@@ -14,27 +14,22 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="btn-group dropdown"
-        [class.open]="dropdownOpen"
-        (window:click)="handleOutsideDropdownClick($event)"
-        [attr.data-dropdown-id]="dropdownId">
+             dropdownMenu>
             <button
                 type="button"
-                class="btn btn-primary dropdown-toggle"
-                (click)="dropdownOpen = !dropdownOpen"
-                [attr.data-dropdown-id]="dropdownId">
+                class="btn btn-primary dropdown-toggle">
                     Manage Recipe
                     <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu"
-                [attr.data-dropdown-id]="dropdownId">
+            <ul class="dropdown-menu">
                     <li>
-                        <a class="dropdown-item" href="#" [attr.data-dropdown-id]="dropdownId">To Shopping List</a>
+                        <a class="dropdown-item" href="#">To Shopping List</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#" [attr.data-dropdown-id]="dropdownId">Edit Recipe</a>
+                        <a class="dropdown-item" href="#">Edit Recipe</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#" [attr.data-dropdown-id]="dropdownId">Delete Recipe</a>
+                        <a class="dropdown-item" href="#">Delete Recipe</a>
                     </li>
             </ul>
         </div>

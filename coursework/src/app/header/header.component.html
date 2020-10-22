@@ -18,20 +18,16 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown"
-                    [class.open]="dropdownOpen"
-                    (window:click)="handleOutsideDropdownClick($event)"
-                    [attr.data-dropdown-id]="dropdownId">
+                    dropdownMenu>
                         <a href="#"
                             class="dropdown-toggle"
-                            role="button"
-                            (click)="dropdownOpen = !dropdownOpen"
-                            [attr.data-dropdown-id]="dropdownId">
+                            role="button">
                                 Manage
                                 <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu" [attr.data-dropdown-id]="dropdownId">
-                            <li><a class="dropdown-item" href="#" [attr.data-dropdown-id]="dropdownId">Save Data</a></li>
-                            <li><a class="dropdown-item" href="#" [attr.data-dropdown-id]="dropdownId">Fetch Data</a></li>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Save Data</a></li>
+                            <li><a class="dropdown-item" href="#">Fetch Data</a></li>
                         </ul>
                 </li>
             </ul>
