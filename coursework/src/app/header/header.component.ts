@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-header',
@@ -6,10 +6,4 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class HeaderComponent {
     collapsed: boolean = true;
-
-    @Output() locationChange: EventEmitter<string> = new EventEmitter<string>();
-
-    handleNavClick(navLocation: string) {
-        this.locationChange.emit(navLocation);
-    }
 }
