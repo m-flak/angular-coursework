@@ -6,10 +6,11 @@
 <hr />
 <div class="row">
     <div class="col-xs-12">
-        <ng-template ngFor let-recipe [ngForOf]="listOfRecipes">
+        <ng-template ngFor let-recipe let-i="index" [ngForOf]="listOfRecipes">
+            {{ recipe_index }}
             <app-recipe-item
                 [recipeData]="recipe"
-                (click)="handleRecipeItemClick(recipe)">
+                [index]="i">
             </app-recipe-item>
         </ng-template>
     </div>

@@ -15,14 +15,5 @@ export class RecipeListComponent implements OnInit {
 
     ngOnInit(): void {
         this.listOfRecipes = this.recipeService.getRecipes();
-
-        // Show details for first recipe
-        if (this.listOfRecipes.length > 0) {
-            this.recipeService.recipeSelected.emit(this.listOfRecipes[0]);
-        }
-    }
-
-    handleRecipeItemClick(recipe: Recipe) {
-        this.recipeService.recipeSelected.emit(recipe);
     }
 }

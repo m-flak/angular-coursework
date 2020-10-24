@@ -7,9 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
     title = 'coursework';
-    currentLocation = 'recipes';
-
-    handleLocationChange(location: string) {
-        this.currentLocation = location;
-    }
 }
