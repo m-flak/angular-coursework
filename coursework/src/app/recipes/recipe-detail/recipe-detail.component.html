@@ -43,11 +43,11 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <ul class="list-group"
-            *ngFor="let ingredient of recipe.ingredients">
-            <li class="list-group-item">
-                <span class="ingredient-quantity">{{ ingredient.amount }} x </span>
-                {{ ingredient.name }}
+        <ul class="list-group">
+            <li class="list-group-item"
+                *ngFor="let ingredient of recipe.ingredients">
+                    <span class="ingredient-quantity">{{ ingredient.amount }} x </span>
+                    {{ ingredient.name }}
             </li>
         </ul>
     </div>
