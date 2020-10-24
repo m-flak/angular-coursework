@@ -17,7 +17,6 @@ export class ShoppingListService {
         }
     ];
 
-    //ingredientsChanged: EventEmitter<Ingredient[]> = new EventEmitter<Ingredient[]>();
     ingredientsChanged: Subject<Ingredient[]> = new Subject<Ingredient[]>();
 
     constructor() {}
