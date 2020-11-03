@@ -8,7 +8,8 @@
                            id="name"
                            class="form-control"
                            name="name"
-                           ngModel />
+                           ngModel
+                           required />
                 </div>
                 <div class="col-sm-2 form-group">
                     <label for="amount">Amount</label>
@@ -16,14 +17,21 @@
                            id="amount"
                            class="form-control"
                            name="amount"
-                           ngModel />
+                           ngModel
+                           required
+                           pattern="\d+" />
+                </div>
+            </div>
+            <div class="row invalid-text-container" *ngIf="!f.valid">
+                <div class="col-xs-12">
+                    <span class="invalid-text">Please enter the ingredient's name and an amount.</span>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
                     <button (click)="setSubmitType('add')" class="btn btn-success" type="submit">Add</button>
                     <button (click)="setSubmitType('delete')" class="btn btn-danger" type="submit">Delete</button>
-                    <button class="btn btn-primary" type="button">Clear</button>
+                    <button (click)="handleClearForm(f)" class="btn btn-primary" type="button">Clear</button>
                 </div>
             </div>
         </form>

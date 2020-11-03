@@ -43,6 +43,12 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
         this.submitType = '';
     }
 
+    handleClearForm(form: NgForm) {
+        //TODO: Clear edit state as well once edit mode implemented.
+        form.reset();
+    }
+
+    // bound to submit btn (click)
     setSubmitType(type: string) {
         this.submitType = type;
     }
