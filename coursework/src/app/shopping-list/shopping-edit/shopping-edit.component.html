@@ -29,8 +29,22 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <button (click)="setSubmitType('add')" class="btn btn-success" type="submit">Add</button>
-                    <button (click)="setSubmitType('delete')" class="btn btn-danger" type="submit">Delete</button>
+                    <div *ngIf="editModeActive; then updateButton; else addButton"></div>
+                    <div *ngIf="editModeActive; then deleteButton; else removeButton"></div>
+
+                    <ng-template #updateButton>
+                        <button (click)="setSubmitType('update')" class="btn btn-success" type="submit">Update</button>
+                    </ng-template>
+                    <ng-template #addButton>
+                        <button (click)="setSubmitType('add')" class="btn btn-success" type="submit">Add</button>
+                    </ng-template>
+                    <ng-template #deleteButton>
+                        <button (click)="setSubmitType('delete')" class="btn btn-danger" type="submit">Delete</button>
+                    </ng-template>
+                    <ng-template #removeButton>
+                        <button (click)="setSubmitType('remove')" class="btn btn-danger" type="submit">Remove</button>
+                    </ng-template>
+
                     <button (click)="handleClearForm(f)" class="btn btn-primary" type="button">Clear</button>
                 </div>
             </div>

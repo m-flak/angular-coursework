@@ -26,6 +26,33 @@ export class ShoppingListService {
         return this.getIngredients();
     }
 
+    getShoppingListItem(index: number): Ingredient {
+        const item: Ingredient = this.shoppingList[index];
+
+        if (item === undefined) {
+            return null;
+        }
+
+        return { ...item };
+    }
+
+    updateShoppingListItem(index: number, contents: Ingredient) {
+        if (this.shoppingList[index] !== undefined) {
+            this.shoppingList[index].name = contents.name;
+            this.shoppingList[index].amount = contents.amount;
+
+            this.ingredientsChanged.next(this.getIngredients());
+        }
+    }
+
+    deleteShoppingListItem(index: number) {
+        if (this.shoppingList[index] !== undefined) {
+            this.shoppingList.splice(index, 1);
+
+            this.ingredientsChanged.next(this.getIngredients());
+        }
+    }
+
     addIngredient(ingredient: Ingredient) {
         return this._addIngredient(ingredient, true);
     }
