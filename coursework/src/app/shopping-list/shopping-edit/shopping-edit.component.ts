@@ -1,4 +1,5 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 import { ShoppingListService } from '../shopping-list.service';
 import { Ingredient } from '../../shared/ingredient.model';
@@ -8,34 +9,47 @@ import { Ingredient } from '../../shared/ingredient.model';
     templateUrl: './shopping-edit.component.html',
     styleUrls: ['./shopping-edit.component.css']
 })
-export class ShoppingEditComponent implements OnInit {
-    @ViewChild('nameInput') refNameInput: ElementRef;
-    @ViewChild('amountInput') refAmountInput: ElementRef;
+export class ShoppingEditComponent implements OnInit, OnDestroy {
+    submitType: string;
 
     constructor(private shoppingListService: ShoppingListService) { }
 
     ngOnInit(): void {
+
     }
 
-    handleAddItem() {
-        const ingredient = this.ingredientFromForm();
+    ngOnDestroy(): void {
 
-        if (ingredient !== null) {
-            this.shoppingListService.addIngredient(ingredient);
+    }
+
+    handleFormSubmit(form: NgForm) {
+        const ingredient = this.ingredientFromForm(form);
+
+        if (ingredient === null) {
+            return;
         }
-    }
 
-    handleDeleteItem() {
-        const ingredient = this.ingredientFromForm();
-
-        if (ingredient !== null) {
-            this.shoppingListService.removeIngredient(ingredient);
+        switch(this.submitType) {
+            case 'add':
+                this.shoppingListService.addIngredient(ingredient);
+                break;
+            case 'delete':
+                this.shoppingListService.removeIngredient(ingredient);
+                break;
+            default:
+                break;
         }
+
+        this.submitType = '';
     }
 
-    private ingredientFromForm(): Ingredient {
-        const name: string = this.refNameInput.nativeElement.value;
-        const amount: number = Number.parseInt(this.refAmountInput.nativeElement.value);
+    setSubmitType(type: string) {
+        this.submitType = type;
+    }
+
+    private ingredientFromForm(form: NgForm): Ingredient {
+        const name: string = form.value['name'] || '';
+        const amount: number = Number.parseInt(form.value['amount']);
 
         if (name.length === 0 || amount === 0 || Number.isNaN(amount)) {
             return null;

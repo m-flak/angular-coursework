@@ -18,6 +18,7 @@ export class ShoppingListService {
     ];
 
     ingredientsChanged: Subject<Ingredient[]> = new Subject<Ingredient[]>();
+    startedEditing: Subject<number> = new Subject<number>();
 
     constructor() {}
 
