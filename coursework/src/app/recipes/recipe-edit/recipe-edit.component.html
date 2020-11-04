@@ -1,9 +1,12 @@
 <div class="row">
     <div class="col-xs-12">
-        <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="recipeForm" (ngSubmit)="handleSubmit()">
             <div class="row">
-                <div class="col-xs-12">
-                    <button type="submit" class="btn btn-success">Save</button>
+                <div class="col-xs-12 main-buttons">
+                    <button
+                        type="submit"
+                        class="btn btn-success"
+                        [disabled]="!recipeForm.valid">Save</button>
                     <button type="button" class="btn btn-danger">Cancel</button>
                 </div>
             </div>
@@ -51,22 +54,36 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12">
-                    <label>Ingredients</label>
-                    <!-- TODO: REPLACE BELOW WITH FORM ARRAY -->
+                <label>Ingredients</label>
+                <div class="col-xs-12" formArrayName="ingredients">
+                    <div class="row recipe-ingredient"
+                         *ngFor="let ingredientCtrl of controls; let i = index"
+                         [formGroupName]="i">
+                            <div class="col-xs-8">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    formControlName="name" />
+                            </div>
+                            <div class="col-xs-2">
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    formControlName="amount" />
+                            </div>
+                            <div class="col-xs-2">
+                                <button type="button" class="btn btn-danger">X</button>
+                            </div>
+                    </div>
+                    <hr />
                     <div class="row">
-                        <div class="col-xs-8">
-                            <input
-                                type="text"
-                                class="form-control" />
-                        </div>
-                        <div class="col-xs-2">
-                            <input
-                                type="number"
-                                class="form-control" />
-                        </div>
-                        <div class="col-xs-2">
-                            <button type="button" class="btn btn-danger">X</button>
+                        <div class="col-xs-12">
+                            <button
+                                class="btn btn-success"
+                                type="button"
+                                (click)="handleAddIngredient()">
+                                    Add Ingredient
+                            </button>
                         </div>
                     </div>
                 </div>
