@@ -1,0 +1,11 @@
+.recipe-ingredient {
+    margin-top: 10px;
+}
+
+div.main-buttons button {
+    margin: 0.25em;
+}
+
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+    border: 1px solid red;
+}

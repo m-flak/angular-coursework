@@ -11,6 +11,7 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeDetailComponent implements OnInit {
     recipe: Recipe;
+    id: number;
 
     constructor (
         private recipeService: RecipeService,
@@ -23,6 +24,7 @@ export class RecipeDetailComponent implements OnInit {
             .subscribe((params: Params) => {
                 const id = Number.parseInt(params['id']);
                 this.recipe = this.recipeService.getRecipe(id);
+                this.id = id;
             });
     }
 
@@ -32,5 +34,10 @@ export class RecipeDetailComponent implements OnInit {
 
     handleEditRecipe() {
         this.router.navigate(['edit'], { relativeTo: this.route });
+    }
+
+    handleDeleteRecipe() {
+        this.recipeService.deleteRecipe(this.id);
+        this.router.navigate(['/recipes']);
     }
 }
